@@ -1,7 +1,11 @@
 var codeInstrumenter = new ChromeCodeInstrumenter({
     additionalMessageHandlers: {
         sendLogs: function(session, request, callback){
-            alert("BG PAGE!!" + JSON.stringify(request))
+            var port = ports.filter(port => port.tabId === session.tabId)[0];
+
+        	if (port){
+        		port.postMessage(["newLogs", request.logs])
+        	}
         },
     }
 });
@@ -9,7 +13,8 @@ var codeInstrumenter = new ChromeCodeInstrumenter({
 // http://stackoverflow.com/questions/11661613/chrome-devpanel-extension-communicating-with-background-page
 var ports = [];
 chrome.runtime.onConnect.addListener(function(port) {
-    if (port.name !== "babel-instrumenter") return;
+    debugger
+    if (port.name !== "code-path-diff") return;
     ports.push(port);
     // Remove port when destroyed (eg when devtools instance is closed)
     port.onDisconnect.addListener(function() {
@@ -91,9 +96,13 @@ function updateTab(tabId, updateFn){
 
 
 
-window.calls = []
+window.codePathDiff = {
+    id: Math.random(),
+    calls: [],
+    startedAt: new Date()
+}
 window.logCall = function(fnName){
-    calls.push({fnName})
+    codePathDiff.calls.push({fnName})
 }
 `, () => {
 
