@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <body>
+        <div class="app"></div>
+
+        <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+
+        <link rel="stylesheet" href="codemirror/codemirror.css"></link>
+        <script src="codemirror/codemirror.js"></script>
+        <script src="codemirror/javascript.js"></script>
+        <script src="codemirror/react-standalone.js"></script>
+
+        <script src="babel-standalone.js" charset="utf-8"></script>
+
+        <script src="underscore.js"></script>
+
+        <link rel="stylesheet" href="bootstrap-flex.css" />
+        <style>
+            body {
+                font-size: 14px;
+            }
+            h2 {
+                font-size: 16px;
+                padding-top: 20px;
+            }
+            .btn-link {
+                color: #337ab7
+                background: transparent
+            }
+            .btn-link:hover {
+                text-decoration: underline;
+            }
+
+            .plugin-selector ul {
+                padding: 0;
+            }
+            .plugin-selector li {
+                list-style: none;
+                padding: 5px;
+                border-bottom: 1px solid #ccc;
+                cursor: pointer;
+            }
+            .plugin-selector li:first-child {
+                border-top: 1px solid #ccc;
+            }
+            .plugin-selector li:hover {
+                color: red;
+            }
+            .plugin-selector li.selected {
+                color: #337ab7;
+            }
+            .sidebar-content {
+                padding: 5px;
+                border-right: 1px solid #ccc;
+                height: 100vh;
+            }
+            @media screen and (max-width: 991px){
+                .plugin-selector ul {
+                    display: none;
+                }
+                .sidebar-content {
+                    border: none;
+                    height: auto;
+                }
+                .sidebar-content > div {
+                    margin-top: 4px;
+                }
+            }
+            @media screen and (min-width: 992px){
+                .plugin-selector select {
+                    display: none;
+                }
+                .sidebar-content > div > div {
+                    text-align: center;
+                }
+            }
+
+            .CodeMirror {
+                height: 100%;
+            }
+            .plugin-editor-column {
+                display: flex;
+                flex-direction: column;
+                max-height: calc(100% - 10px);
+            }
+            .plugin-editor-column > h2 {
+                flex: 0;
+            }
+            .plugin-editor-column > div {
+                flex: 1;
+            }
+        </style>
+        <script src="ui/ui.js"></script>
+    </body>
+</html>

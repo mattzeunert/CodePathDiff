@@ -1,0 +1,32 @@
+{
+  "name": "Code Path Diff",
+  "version": "0.1.1",
+  "manifest_version": 2,
+  "description": "asdfsdfsdf",
+  "minimum_chrome_version": "50.0",
+  "devtools_page": "devtools.html",
+  "background": {
+      "page": "background.html"
+  },
+  "icons": {
+   "128": "icon.png"
+ },
+ "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+ "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+      "webRequest",
+      "webRequestBlocking",
+      "http://*/*",
+      "https://*/*",
+      "file://*/*",
+      "storage"
+  ],
+  "web_accessible_resources": [
+      "injected.js",
+      "inspector.js",
+      "resolveFrameWorker.js",
+      "inhibitJavaScriptExecution.js"
+  ]
+}
