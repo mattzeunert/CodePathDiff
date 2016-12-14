@@ -1,4 +1,10 @@
-var codeInstrumenter = new ChromeCodeInstrumenter({});
+var codeInstrumenter = new ChromeCodeInstrumenter({
+    additionalMessageHandlers: {
+        sendLogs: function(session, request, callback){
+            alert("BG PAGE!!" + JSON.stringify(request))
+        },
+    }
+});
 
 // http://stackoverflow.com/questions/11661613/chrome-devpanel-extension-communicating-with-background-page
 var ports = [];
@@ -85,18 +91,9 @@ function updateTab(tabId, updateFn){
 
 
 
-window.calls = {}
+window.calls = []
 window.logCall = function(fnName){
-    if (!window.calls[fnName]){
-        window.calls[fnName] = 0
-    }
-    window.calls[fnName]++
-}
-window.onBabelInstrumenterDocumentReady = function(){
-    setTimeout(() => {
-        var calls = Object.entries(window.calls).sort((a,b) => b[1]-a[1]).slice(0, 20)
-        console.table(calls)
-    }, 2000)
+    calls.push({fnName})
 }
 `, () => {
 
